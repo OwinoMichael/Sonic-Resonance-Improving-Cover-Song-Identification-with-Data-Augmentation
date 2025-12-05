@@ -1,0 +1,9 @@
+"device": "mps"
+"fmin": 32  # default 32
+"n_bins": 96  # default 96
+"bins_per_octave": 12  # default 12
+"aug_speed_mode": [1.0]
+"val_data_split": 0 # percent of training data to reserve for validation aka "val"
+"val_unseen": 0 # percent of work_ids from training data to reserve exclusively for validation aka "val"
+"test_data_split": 0 # percent of training data to reserve for test
+"test_data_unseen": 0 # percent of work_ids from training data to reserve exclusively for test

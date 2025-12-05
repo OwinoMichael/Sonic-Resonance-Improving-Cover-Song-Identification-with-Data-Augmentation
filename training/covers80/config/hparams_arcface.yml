@@ -1,0 +1,73 @@
+### Training data paths
+train_path: "/content/drive/MyDrive/CoverHunterMPS/CoverHunterMPS/data/covers80/train_augmented.txt"
+val_path: "/content/drive/MyDrive/CoverHunterMPS/CoverHunterMPS/data/covers80/val.txt"
+# test_path: "data/covers80/test.txt"
+
+### optional external test datasets used in the test phase of training epochs
+covers80:
+  query_path: "/content/drive/MyDrive/CoverHunterMPS/CoverHunterMPS/data/covers80/test.txt"
+  ref_path: "/content/drive/MyDrive/CoverHunterMPS/CoverHunterMPS/data/covers80/test.txt"
+  every_n_epoch_to_test: 1
+
+every_n_epoch_to_test: 1
+every_n_epoch_to_save: 1
+
+### Dataset parameters
+data_type: "cqt"
+chunk_frame: [1125, 900, 675]
+chunk_s: 135
+mode: "random"
+mean_size: 3
+m_per_class: 8
+cqt:
+  hop_size: 0.04
+
+spec_augmentation:
+  random_erase:
+    prob: 0.5
+    erase_num: 4
+    region_size: [.25, .1]
+  roll_pitch:
+    prob: 0.5
+    shift_num: 12
+    method: "default"
+
+### Training parameters
+device: 'mps'
+seed: 1234
+num_workers: 1
+num_gpus: 1
+batch_size: 32
+learning_rate: 0.001
+adam_b1: 0.8
+adam_b2: 0.99
+lr_decay: 0.995 
+min_lr: 0.0001
+warmup: False
+warmup_steps: 20000
+early_stopping_patience: 25 
+
+### Model parameters
+input_dim: 96
+embed_dim: 128
+encoder:
+  output_dims: 128
+  num_blocks: 6
+  attention_dim: 256
+
+pool_type: "attention"
+
+# Loss parameters
+foc:
+  output_dims: 30000
+  weight: 0.5 
+  gamma: 2
+
+# USE ARCFACE LOSS
+arcface:
+  s: 32.0      # Lower from 64 - too aggressive
+  m: 0.20      # Much lower margin - easier to learn
+  weight: 0.5  # Stronger weight
+
+center:
+  weight: 0.0

@@ -1,0 +1,9 @@
+black
+coverage
+librosa
+matplotlib
+nnAudio
+PyYAML
+tensorboard
+torch
+torchaudio
